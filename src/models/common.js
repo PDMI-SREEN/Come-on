@@ -25,6 +25,20 @@ export default {
       return response
 
     },
+
+    *ncovcity({ payload }, { call }) {
+      const response = yield call(test.ncovcity, payload);
+      return response
+    },
+    *ncov({ payload }, { call }) {
+      const response = yield call(test.ncov, payload);
+      return response
+    },
+    *tianqi({ payload }, { call }) {
+      const response = yield call(test.tianqi, payload);
+      return response
+    },
+
   },
 
   reducers: {

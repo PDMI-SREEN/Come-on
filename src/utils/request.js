@@ -4,6 +4,7 @@ import { baseUrl, noConsole } from '../config/config';
 const request_data = {  //   公共 参数
   // platform: 'wap',
   // rent_mode: 2,
+  key:'a0077459d7ebca06232c08dd43f84c26'
 };
 
 

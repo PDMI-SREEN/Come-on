@@ -51,64 +51,64 @@ class App extends Component {
       'pages/cart/index',
       'pages/user/index',
     ],
-    subpackages:[
-      {
-        'root':'pages/SubContractA',
-        'pages': [
-          'index',
-        ]
-      },
-      {
-        'root':'pages/SubContractB',
-        'pages': [
-          'index',
-        ]
-      },
-      {
-        'root':'pages/SubContractC',
-        'pages': [
-          'index',
-        ]
-      },
-      {
-        'root':'pages/SubContractD',
-        'pages': [
-          'index',
-        ]
-      }
-    ],
+    // subpackages:[
+    //   {
+    //     'root':'pages/SubContractA',
+    //     'pages': [
+    //       'index',
+    //     ]
+    //   },
+    //   {
+    //     'root':'pages/SubContractB',
+    //     'pages': [
+    //       'index',
+    //     ]
+    //   },
+    //   {
+    //     'root':'pages/SubContractC',
+    //     'pages': [
+    //       'index',
+    //     ]
+    //   },
+    //   {
+    //     'root':'pages/SubContractD',
+    //     'pages': [
+    //       'index',
+    //     ]
+    //   }
+    // ],
     window: {
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: '小程序',
       navigationBarTextStyle: 'black',
     },
-    tabBar: {
-      list: [
-        {
-          pagePath: 'pages/index/index',
-          text: '主包1',
-          // iconPath: '',
-          // selectedIconPath: '',
-        },
-        {
-          pagePath: 'pages/cart/index',
-          text: '主包2',
-          // iconPath: '',
-          // selectedIconPath: '',
-        },
-        {
-          pagePath: 'pages/user/index',
-          text: '主包3',
-          // iconPath: '',
-          // selectedIconPath: '',
-        },
-      ],
-      color: '#8A2BE2',
-      selectedColor: '#7FFFD4',
-      backgroundColor: '#fff',
-      borderStyle: 'black',
-    },
+    // tabBar: {
+    //   list: [
+    //     {
+    //       pagePath: 'pages/index/index',
+    //       text: '主包1',
+    //       // iconPath: '',
+    //       // selectedIconPath: '',
+    //     },
+    //     {
+    //       pagePath: 'pages/cart/index',
+    //       text: '主包2',
+    //       // iconPath: '',
+    //       // selectedIconPath: '',
+    //     },
+    //     {
+    //       pagePath: 'pages/user/index',
+    //       text: '主包3',
+    //       // iconPath: '',
+    //       // selectedIconPath: '',
+    //     },
+    //   ],
+    //   color: '#8A2BE2',
+    //   selectedColor: '#7FFFD4',
+    //   backgroundColor: '#fff',
+    //   borderStyle: 'black',
+    // },
 
   }
 
