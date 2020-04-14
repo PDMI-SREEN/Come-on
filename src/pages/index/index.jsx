@@ -3,7 +3,7 @@ import { View, Button, Text,SwiperItem ,Image} from '@tarojs/components'
 import { AtButton,AtIcon } from "taro-ui"
 import { connect } from '@tarojs/redux'
 import classNames from 'classnames'
-import MapChart from '../../components/MapChart'
+import MapChart from '../../components/map'
 
 
 import './index.scss'
@@ -32,6 +32,7 @@ class Index extends Component {
       ExhibitionData:{},//展示数据
       ncovData:{} ,// 全国数据
       tianqiData:[],//天气
+      mapdataNEw:[],//地图tooip数据
     }
   }
 
@@ -45,28 +46,47 @@ class Index extends Component {
 
   componentDidMount() {
     this.getdataInfo()
-    const chartData = [
-      { name: '郑州市', value: 100 },
-      { name: '洛阳市', value: 10 },
-      { name: '开封市', value: 20 },
-      { name: '信阳市', value: 30 },
-      { name: '驻马店市', value: 40 },
-      { name: '南阳市', value: 41 },
-      { name: '周口市', value: 15 },
-      { name: '许昌市', value: 25 },
-      { name: '平顶山市', value: 35 },
-      { name: '新乡市', value: 35 },
-      { name: '漯河市', value: 35 },
-      { name: '商丘市', value: 35 },
-      { name: '三门峡市', value: 35 },
-      { name: '济源市', value: 35 },
-      { name: '焦作市', value: 35 },
-      { name: '安阳市', value: 35 },
-      { name: '鹤壁市', value: 35 },
-      { name: '濮阳市', value: 35 },
-      { name: '开封市', value: 45 }
-    ]
-    this.mapChart.refresh(chartData);
+    // const chartData = [
+    //   {name: '郑州市', value: 0 },
+    //   {name:"南海诸岛",value:0},
+    //   {name: '北京', value: 0},
+    //   {name: '天津', value: 0},
+    //   {name: '上海', value: 0},
+    //   {name: '重庆', value: 0},
+    //   {name: '河北', value: 0},
+    //   {name: '河南', value: 0},
+    //   {name: '云南', value: 0},
+    //   {name: '辽宁', value: 0},
+    //   {name: '黑龙江', value: 0},
+    //   {name: '湖南', value: 0},
+    //   {name: '安徽', value: 0},
+    //   {name: '山东', value: 0},
+    //   {name: '新疆', value: 0},
+    //   {name: '江苏', value: 0},
+    //   {name: '浙江', value: 0},
+    //   {name: '江西', value: 0},
+    //   {name: '湖北', value: 0},
+    //   {name: '广西', value: 0},
+    //   {name: '甘肃', value: 0},
+    //   {name: '山西', value: 0},
+    //   {name: '内蒙古', value: 0},
+    //   {name: '陕西', value: 0},
+    //   {name: '吉林', value: 0},
+    //   {name: '福建', value: 0},
+    //   {name: '贵州', value: 0},
+    //   {name: '广东', value: 0},
+    //   {name: '青海', value: 0},
+    //   {name: '西藏', value: 0},
+    //   {name: '四川', value: 0},
+    //   {name: '宁夏', value: 0},
+    //   {name: '海南', value: 0},
+    //   {name: '台湾', value: 0},
+    //   {name: '香港', value: 0},
+    //   {name: '澳门', value: 0}
+    // ]
+    // this.mapChart.refresh(chartData);
+
+    setTimeout(() => { this.mapChart.refresh(this.state.mapdataNEw); },3000);
   }
 
   refMapChart = (node) => this.mapChart = node;
@@ -121,8 +141,10 @@ class Index extends Component {
 
   // 处理数据
   screenData = (cityName) =>{
+    this.vData()
     const { getdataInfo ,ncovData} = this.state;
     let HeBei =  getdataInfo.filter((ele)=> ele.provinceShortName == '河北');
+    console.log(HeBei,'12212');
     let TangShangDataa = HeBei[0]['cities'].filter((ele)=>ele.cityName == '唐山');
     let { deadCount, confirmedCount, curedCount ,currentConfirmedCount,suspectedCount} = HeBei[0];
     if(cityName === '全国'){
@@ -140,6 +162,21 @@ class Index extends Component {
         deadCount, confirmedCount, curedCount ,currentConfirmedCount,suspectedCount
       }
     });
+  };
+
+  // 点击地图展示 本次省市 详情 数据
+  vData = () =>{
+    const {getdataInfo} = this.state;
+    let infodata = [...getdataInfo]
+    console.log(getdataInfo);
+
+    infodata.forEach((ele)=>{
+      ele['name'] = ele['provinceShortName']
+      ele['value'] = ele['confirmedCount']
+    });
+    this.setState({
+      mapdataNEw:infodata
+    })
   };
 
 
@@ -280,8 +317,8 @@ class Index extends Component {
                 全国疫情数据，地图模式
               </Text>
             </View>
-            <View>
-              <MapChart ref={this.refMapChart} />
+            <View className="map-chart">
+              <MapChart  vData={ this.vData } ref={this.refMapChart} />
             </View>
           </View>
 
